@@ -26,7 +26,7 @@ py::array_t<float> region_growing_kernel(
     // 初始化pointcloud 数量是输入的numpy array中的point数量
     PointCloudPtr cloud(new PointCloud(ref_input.shape(0), 1));
 //#pragma omp parallel for num_threads(NUM_THREADS)
-    for (int i = 0; i < ref_input.shape(0); ++i) {
+    for (int i = 0; i < ref_input.shape(0); ++i) { 
         cloud->points[i].x = ref_input(i, 0);
         cloud->points[i].y = ref_input(i, 1);
         cloud->points[i].z = ref_input(i, 2);
@@ -51,7 +51,7 @@ py::array_t<float> region_growing_kernel(
     // results
     int data_field = 5;
     auto result = py::array_t<float>(py::array::ShapeContainer(
-            {(const long) useful_point_count, data_field}
+            {(const long) useful_point_count, data_field}   // 创建一个数组
     ));
 //    std::cout << "RESULT SHAPE: " << result.shape(0) << " " << result.shape(1) << std::endl;
 
